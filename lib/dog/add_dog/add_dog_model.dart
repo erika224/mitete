@@ -6,6 +6,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/upload_data.dart';
+import 'dart:ui';
 import 'add_dog_widget.dart' show AddDogWidget;
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -44,15 +45,35 @@ class AddDogModel extends FlutterFlowModel<AddDogWidget> {
     return null;
   }
 
-  // State field(s) for Birttday widget.
-  FocusNode? birttdayFocusNode;
-  TextEditingController? birttdayTextController;
-  final birttdayMask = MaskTextInputFormatter(mask: '########');
-  String? Function(BuildContext, String?)? birttdayTextControllerValidator;
+  // State field(s) for Birthday widget.
+  FocusNode? birthdayFocusNode;
+  TextEditingController? birthdayTextController;
+  final birthdayMask = MaskTextInputFormatter(mask: '########');
+  String? Function(BuildContext, String?)? birthdayTextControllerValidator;
+  String? _birthdayTextControllerValidator(BuildContext context, String? val) {
+    if (val == null || val.isEmpty) {
+      return '誕生日は必須です';
+    }
+
+    if (!RegExp('^\\d{4}(0[1-9]|1[0-2])(0[1-9]|[12][0-9]|3[01])\$')
+        .hasMatch(val)) {
+      return '入力内容をご確認ください';
+    }
+    return null;
+  }
+
   // State field(s) for dogKind widget.
   FocusNode? dogKindFocusNode;
   TextEditingController? dogKindTextController;
   String? Function(BuildContext, String?)? dogKindTextControllerValidator;
+  String? _dogKindTextControllerValidator(BuildContext context, String? val) {
+    if (val == null || val.isEmpty) {
+      return '犬種は必須です';
+    }
+
+    return null;
+  }
+
   // State field(s) for dogDescription widget.
   FocusNode? dogDescriptionFocusNode;
   TextEditingController? dogDescriptionTextController;
@@ -77,6 +98,8 @@ class AddDogModel extends FlutterFlowModel<AddDogWidget> {
     customAppbarModel = createModel(context, () => CustomAppbarModel());
     dogNameTextControllerValidator = _dogNameTextControllerValidator;
     weightTextControllerValidator = _weightTextControllerValidator;
+    birthdayTextControllerValidator = _birthdayTextControllerValidator;
+    dogKindTextControllerValidator = _dogKindTextControllerValidator;
     dogDescriptionTextControllerValidator =
         _dogDescriptionTextControllerValidator;
   }
@@ -90,8 +113,8 @@ class AddDogModel extends FlutterFlowModel<AddDogWidget> {
     weightFocusNode?.dispose();
     weightTextController?.dispose();
 
-    birttdayFocusNode?.dispose();
-    birttdayTextController?.dispose();
+    birthdayFocusNode?.dispose();
+    birthdayTextController?.dispose();
 
     dogKindFocusNode?.dispose();
     dogKindTextController?.dispose();

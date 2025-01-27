@@ -7,6 +7,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'dart:math';
+import 'dart:ui';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
@@ -663,14 +664,14 @@ class _BookingConfirmModalWidgetState extends State<BookingConfirmModalWidget>
                                     : () async {
                                         logFirebaseEvent(
                                             'BOOKING_CONFIRM_MODAL_COMP__BTN_ON_TAP');
-                                        if ((_model.datePicked1! >=
+                                        if (!((_model.datePicked1! >=
                                                 overlayBookableRecord
                                                     .startTime!) &&
                                             (_model.datePicked2! <=
                                                 overlayBookableRecord
                                                     .endTime!) &&
                                             (_model.datePicked1! <
-                                                _model.datePicked2!)) {
+                                                _model.datePicked2!))) {
                                           logFirebaseEvent(
                                               'Button_backend_call');
 

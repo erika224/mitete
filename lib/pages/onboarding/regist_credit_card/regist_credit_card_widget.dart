@@ -4,6 +4,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/pages/my_page/change_card/change_card_widget.dart';
+import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -42,7 +43,10 @@ class _RegistCreditCardWidgetState extends State<RegistCreditCardWidget> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => FocusScope.of(context).unfocus(),
+      onTap: () {
+        FocusScope.of(context).unfocus();
+        FocusManager.instance.primaryFocus?.unfocus();
+      },
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
@@ -87,7 +91,10 @@ class _RegistCreditCardWidgetState extends State<RegistCreditCardWidget> {
                         context: context,
                         builder: (context) {
                           return GestureDetector(
-                            onTap: () => FocusScope.of(context).unfocus(),
+                            onTap: () {
+                              FocusScope.of(context).unfocus();
+                              FocusManager.instance.primaryFocus?.unfocus();
+                            },
                             child: Padding(
                               padding: MediaQuery.viewInsetsOf(context),
                               child: ChangeCardWidget(),

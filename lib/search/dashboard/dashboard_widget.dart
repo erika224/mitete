@@ -6,6 +6,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/search/never_auth_overlay/never_auth_overlay_widget.dart';
 import '/search/prefecture_selection/prefecture_selection_widget.dart';
+import 'dart:ui';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -59,7 +60,10 @@ class _DashboardWidgetState extends State<DashboardWidget> {
     context.watch<FFAppState>();
 
     return GestureDetector(
-      onTap: () => FocusScope.of(context).unfocus(),
+      onTap: () {
+        FocusScope.of(context).unfocus();
+        FocusManager.instance.primaryFocus?.unfocus();
+      },
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
@@ -95,8 +99,11 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                 context: context,
                                 builder: (context) {
                                   return GestureDetector(
-                                    onTap: () =>
-                                        FocusScope.of(context).unfocus(),
+                                    onTap: () {
+                                      FocusScope.of(context).unfocus();
+                                      FocusManager.instance.primaryFocus
+                                          ?.unfocus();
+                                    },
                                     child: Padding(
                                       padding: MediaQuery.viewInsetsOf(context),
                                       child: PrefectureSelectionWidget(),
@@ -281,18 +288,11 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                               StreamBuilder<List<BookableRecord>>(
                                 stream: queryBookableRecord(
                                   queryBuilder: (bookableRecord) =>
-                                      bookableRecord
-                                          .where(
-                                            'date',
-                                            isEqualTo: FFAppState()
-                                                .selectedDate
-                                                ?.toString(),
-                                          )
-                                          .where(
-                                            'end_time',
-                                            isLessThanOrEqualTo:
-                                                getCurrentTimestamp,
-                                          ),
+                                      bookableRecord.where(
+                                    'date',
+                                    isEqualTo:
+                                        FFAppState().selectedDate?.toString(),
+                                  ),
                                 ),
                                 builder: (context, snapshot) {
                                   // Customize what your widget looks like when it's loading.
@@ -314,6 +314,21 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                   List<BookableRecord>
                                       iniListViewBookableRecordList =
                                       snapshot.data!;
+                                  if (iniListViewBookableRecordList.isEmpty) {
+                                    return Container(
+                                      width: double.infinity,
+                                      child: EmptyStateWidget(
+                                        icon: Icon(
+                                          Icons
+                                              .sentiment_very_dissatisfied_outlined,
+                                          color: FlutterFlowTheme.of(context)
+                                              .secondaryText,
+                                          size: 50.0,
+                                        ),
+                                        title: 'まだシッターがいません',
+                                      ),
+                                    );
+                                  }
 
                                   return ListView.separated(
                                     padding: EdgeInsets.zero,

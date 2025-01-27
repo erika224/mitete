@@ -5,6 +5,7 @@ import '/component/empty_state/empty_state_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -44,7 +45,10 @@ class _BookListOwnerWidgetState extends State<BookListOwnerWidget> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => FocusScope.of(context).unfocus(),
+      onTap: () {
+        FocusScope.of(context).unfocus();
+        FocusManager.instance.primaryFocus?.unfocus();
+      },
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
@@ -70,7 +74,7 @@ class _BookListOwnerWidgetState extends State<BookListOwnerWidget> {
                                 .bodyMedium
                                 .override(
                                   fontFamily: 'Noto Sans JP',
-                                  fontSize: 20.0,
+                                  fontSize: 16.0,
                                   letterSpacing: 0.0,
                                 ),
                           ),
@@ -320,7 +324,8 @@ class _BookListOwnerWidgetState extends State<BookListOwnerWidget> {
                         padding:
                             EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
                         child: Text(
-                          'チャットページからシッターさんと連絡が取れます',
+                          '承認済み\nチャットページからシッターさんと連絡が取れます',
+                          textAlign: TextAlign.center,
                           style:
                               FlutterFlowTheme.of(context).bodyMedium.override(
                                     fontFamily: 'Noto Sans JP',

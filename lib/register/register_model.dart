@@ -10,6 +10,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import '/search/never_auth_overlay/never_auth_overlay_widget.dart';
+import 'dart:ui';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'register_widget.dart' show RegisterWidget;
 import 'package:cloud_firestore/cloud_firestore.dart';

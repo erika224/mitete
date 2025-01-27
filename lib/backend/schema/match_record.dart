@@ -93,7 +93,9 @@ class MatchRecord extends FirestoreRecord {
   bool hasTotalPayment() => _totalPayment != null;
 
   void _initializeFields() {
-    _status = deserializeEnum<MatchStatus>(snapshotData['status']);
+    _status = snapshotData['status'] is MatchStatus
+        ? snapshotData['status']
+        : deserializeEnum<MatchStatus>(snapshotData['status']);
     _user = snapshotData['user'] as DocumentReference?;
     _bookable = snapshotData['bookable'] as DocumentReference?;
     _requestStartTime = snapshotData['request_start_time'] as DateTime?;

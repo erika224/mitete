@@ -6,6 +6,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/upload_data.dart';
+import 'dart:ui';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -39,8 +40,8 @@ class _AddDogWidgetState extends State<AddDogWidget> {
     _model.weightTextController ??= TextEditingController();
     _model.weightFocusNode ??= FocusNode();
 
-    _model.birttdayTextController ??= TextEditingController();
-    _model.birttdayFocusNode ??= FocusNode();
+    _model.birthdayTextController ??= TextEditingController();
+    _model.birthdayFocusNode ??= FocusNode();
 
     _model.dogKindTextController ??= TextEditingController();
     _model.dogKindFocusNode ??= FocusNode();
@@ -61,7 +62,10 @@ class _AddDogWidgetState extends State<AddDogWidget> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => FocusScope.of(context).unfocus(),
+      onTap: () {
+        FocusScope.of(context).unfocus();
+        FocusManager.instance.primaryFocus?.unfocus();
+      },
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
@@ -368,8 +372,8 @@ class _AddDogWidgetState extends State<AddDogWidget> {
                                       ),
                                     ),
                                     TextFormField(
-                                      controller: _model.birttdayTextController,
-                                      focusNode: _model.birttdayFocusNode,
+                                      controller: _model.birthdayTextController,
+                                      focusNode: _model.birthdayFocusNode,
                                       autofocus: false,
                                       textInputAction: TextInputAction.done,
                                       obscureText: false,
@@ -428,9 +432,9 @@ class _AddDogWidgetState extends State<AddDogWidget> {
                                       cursorColor:
                                           FlutterFlowTheme.of(context).primary,
                                       validator: _model
-                                          .birttdayTextControllerValidator
+                                          .birthdayTextControllerValidator
                                           .asValidator(context),
-                                      inputFormatters: [_model.birttdayMask],
+                                      inputFormatters: [_model.birthdayMask],
                                     ),
                                   ],
                                 ),
@@ -875,7 +879,7 @@ class _AddDogWidgetState extends State<AddDogWidget> {
                                     userId: currentUserUid,
                                     dogName: _model.dogNameTextController.text,
                                     birthday:
-                                        _model.birttdayTextController.text,
+                                        _model.birthdayTextController.text,
                                     weight: _model.weightTextController.text,
                                     kind: _model.dogKindTextController.text,
                                     description: _model

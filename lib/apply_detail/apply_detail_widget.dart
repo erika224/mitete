@@ -6,6 +6,7 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -50,7 +51,10 @@ class _ApplyDetailWidgetState extends State<ApplyDetailWidget> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => FocusScope.of(context).unfocus(),
+      onTap: () {
+        FocusScope.of(context).unfocus();
+        FocusManager.instance.primaryFocus?.unfocus();
+      },
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
@@ -661,10 +665,10 @@ class _ApplyDetailWidgetState extends State<ApplyDetailWidget> {
                                 onPressed: () async {
                                   logFirebaseEvent(
                                       'APPLY_DETAIL_PAGE__BTN_ON_TAP');
-                                  if (!((buttonBookableRecord.startTime ==
+                                  if ((buttonBookableRecord.startTime ==
                                           columnMatchRecord.requestStartTime) &&
-                                      (columnMatchRecord.requestEndTime ==
-                                          buttonBookableRecord.endTime))) {
+                                      (buttonBookableRecord.endTime ==
+                                          columnMatchRecord.requestEndTime)) {
                                     logFirebaseEvent('Button_backend_call');
 
                                     await columnMatchRecord.reference
@@ -701,9 +705,12 @@ class _ApplyDetailWidgetState extends State<ApplyDetailWidget> {
                                               .resolve(
                                                   Directionality.of(context)),
                                           child: GestureDetector(
-                                            onTap: () =>
-                                                FocusScope.of(dialogContext)
-                                                    .unfocus(),
+                                            onTap: () {
+                                              FocusScope.of(dialogContext)
+                                                  .unfocus();
+                                              FocusManager.instance.primaryFocus
+                                                  ?.unfocus();
+                                            },
                                             child: BookingChangeDiarogWidget(
                                               bookableRef: buttonBookableRecord
                                                   .reference,

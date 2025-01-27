@@ -9,20 +9,6 @@
           "order": "ASCENDING"
         },
         {
-          "fieldPath": "end_time",
-          "order": "ASCENDING"
-        }
-      ]
-    },
-    {
-      "collectionGroup": "bookable",
-      "queryScope": "COLLECTION",
-      "fields": [
-        {
-          "fieldPath": "date",
-          "order": "ASCENDING"
-        },
-        {
           "fieldPath": "prefecture",
           "order": "ASCENDING"
         },

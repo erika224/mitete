@@ -6,6 +6,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/search/never_auth_overlay/never_auth_overlay_widget.dart';
 import '/search/prefecture_selection/prefecture_selection_widget.dart';
+import 'dart:ui';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'dashboard_widget.dart' show DashboardWidget;
 import 'package:flutter/material.dart';
